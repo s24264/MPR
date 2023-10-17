@@ -1,0 +1,27 @@
+package com.example.MPR;
+
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
+@Service
+public class MyRestService {
+
+    DogRepository dogRep;
+    public MyRestService(DogRepository dogRep){
+        this.dogRep=dogRep;
+        this.dogRep.save(new Dog(4,"burek","czarny"));
+        this.dogRep.save(new Dog(6,"placzek","szary"));
+    }
+
+    public Dog getDogByName(String name){
+        return this.dogRep.findByImie(name);
+    }
+    public Dog putDog(Dog pies){
+        return this.dogRep.save(new Dog(pies.getWiek(), pies.getImie(), pies.getKolor()));
+    }
+
+
+
+
+}
