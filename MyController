@@ -1,0 +1,42 @@
+package com.example.MPR;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+
+@RestController
+public class MyController {
+//    private final MyRestService myRestService;
+//    @Autowired
+//    public MyController(MyRestService myRestService){
+//        this.myRestService=myRestService;
+//    }
+//    @PutMapping("/putDog")
+//    public void putUser(@RequestBody Dog pies){myRestService.addDog(pies);}
+//
+//    @GetMapping("/getDog")
+//    public List<Dog> getALLUsers(){return myRestService.getDog();}
+//
+//    @DeleteMapping("/poj/user/{id}")
+//    public void deleteUser(@RequestParam Integer id){return myRestService.(id);}
+//
+//    @GetMapping("/greeting")
+//    public String greeting(){
+//        return "Greeting from Spring Boot!";
+//    }
+//
+    private MyRestService service;
+
+    public MyController(MyRestService service){
+        this.service=service;
+    }
+    @GetMapping("Dog/{imie}")
+    public Dog getDogByName(@PathVariable("imie")String name){
+        return this.service.getDogByName(name);
+    }
+    @PostMapping("Dog/add")
+    public void addDog(@RequestBody Dog dog){
+        this.service.putDog(dog);
+    }
+}
