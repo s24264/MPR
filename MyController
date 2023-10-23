@@ -37,6 +37,14 @@ public class MyController {
     }
     @PostMapping("Dog/add")
     public void addDog(@RequestBody Dog dog){
-        this.service.putDog(dog);
+        this.service.addDog(dog);
+    }
+    @PutMapping("/dog/update/{imie}")
+    public void putDog(@PathVariable String name, @RequestBody Dog updateDog){
+    service.putDog(name,updateDog);
+    }
+    @DeleteMapping("dog/delete/{imie}")
+    public void deleteDog(@PathVariable String name){
+    this.service.deleteDog(name);
     }
 }
