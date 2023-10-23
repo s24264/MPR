@@ -17,10 +17,25 @@ public class MyRestService {
     public Dog getDogByName(String name){
         return this.dogRep.findByImie(name);
     }
-    public Dog putDog(Dog pies){
-        return this.dogRep.save(new Dog(pies.getWiek(), pies.getImie(), pies.getKolor()));
+    public void addDog(Dog dog){
+    dogRep.save(dog);
     }
+    public Dog putDog(String name, Dog updateDog){
+        Dog existDog = dogRep.findByImie(name);
+        if(existDog != null){
+            existDog.setImie(updateDog.getImie());
+            existDog.setKolor(updateDog.getKolor());
+            existDog.setWiek(updateDog.getWiek());
+            dogRep.save(existDog);
+        }
+    }
+    public void deleteDog(String name){
+        Dog existDog = dogRep.findByName(name);
 
+        if(existDog != null){
+            dogRep.delete(existDog);
+        }
+    }
 
 
 
