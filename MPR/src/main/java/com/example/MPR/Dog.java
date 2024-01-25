@@ -8,7 +8,7 @@ import jakarta.persistence.Id;
 @Entity
 public class Dog {
 @Id
-@GeneratedValue
+@GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
      int age;
      String name;
